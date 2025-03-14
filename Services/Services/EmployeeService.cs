@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Contracts.Interfaces;
 using Domain.Models;
+using Entities.DTOs;
 using Service.Contracts;
 
 namespace Service.Services
@@ -17,7 +18,7 @@ namespace Service.Services
             _employeeRepository = employeeRepository;
         }
 
-        public async Task<IEnumerable<Employee>> GetEmployees()
+        public async Task<IEnumerable<EmployeeDto>> GetEmployees()
         {
             return await _employeeRepository.GetEmployees();
         }

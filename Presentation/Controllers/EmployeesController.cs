@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using Service.Contracts.Interfaces;
@@ -15,7 +16,7 @@ namespace Presentation.Controllers
             _employeeService = employeeService;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employee>>> Index()
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> Index()
         {
             return Ok(await _employeeService.GetEmployees());
         }

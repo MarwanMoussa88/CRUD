@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Models;
+using Entities.DTOs;
 
 namespace Contracts.Interfaces
 {
     public interface IEmployeeRepository
     {
-        Task<IEnumerable<Employee>> GetEmployees();
+        Task<IEnumerable<EmployeeDto>> GetEmployees();
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Contracts.Interfaces;
 using Domain.Models;
+using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
 using Repository.Contexts.HumanCapitalContext;
 
@@ -16,9 +17,13 @@ namespace Repository.Repositories
         {
         }
 
-        public async Task<IEnumerable<Employee>> GetEmployees()
+        public async Task<IEnumerable<EmployeeDto>> GetEmployees()
         {
-            return await FindAll().Include(c=>c.Company).OrderBy(c => c.Name).ToListAsync();
+            return await FindAll().OrderBy(c => c.Name).Include(c => c.Company)
+                .Select(c =>
+                new EmployeeDto(c.Id, c.Name, c.Age,
+                new EmployeeCompanyDto(c.Company.Id, c.Company.Name, c.Company.Address)))
+                .ToListAsync();
         }
     }
 }
