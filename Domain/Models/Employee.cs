@@ -18,6 +18,7 @@ namespace Domain.Models
         public required int Age { get; set; }
         [ForeignKey(nameof(Company))]
         public Guid CompanyId { get; set; }
+        
         public Company Company { get; set; }
     }
 }
