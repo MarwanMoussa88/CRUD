@@ -2,7 +2,8 @@ using API.ServiceExtensions;
 using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//Our own presentation layer so we can limit what dependencies can be injected in the presentation layer
+//since all the depenencies have to be injected in the webapi for dependency injection 
 builder.Services.AddControllers().AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

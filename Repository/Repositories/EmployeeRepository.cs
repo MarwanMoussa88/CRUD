@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Contracts.Interfaces;
 using Domain.Models;
+using Entities.Conversions;
 using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
 using Repository.Contexts.HumanCapitalContext;
@@ -17,13 +18,38 @@ namespace Repository.Repositories
         {
         }
 
+        public void AddEmployee(CreateEmployeeDto employee)
+        {
+            var addedEmployee = employee.CreateEmployeeDtoToModel();
+            addedEmployee.Id = Guid.NewGuid();
+            Create(addedEmployee);
+            SaveChanges();
+        }
+
+        public void DeleteEmployee(EmployeeDto employee)
+        {
+            Delete(employee.EmployeeDtoToModel());
+            SaveChanges();
+        }
+
+        public async Task<EmployeeDto> GetEmployee(Guid id)
+        {
+            var employee = await FindAllByCondition(c => c.Id == id, false).Include(c => c.Company)
+                .FirstOrDefaultAsync();
+            return employee.EmployeeToDto();
+        }
+
         public async Task<IEnumerable<EmployeeDto>> GetEmployees()
         {
             return await FindAll().OrderBy(c => c.Name).Include(c => c.Company)
-                .Select(c =>
-                new EmployeeDto(c.Id, c.Name, c.Age,
-                new EmployeeCompanyDto(c.Company.Id, c.Company.Name, c.Company.Address)))
+                .Select(c => c.EmployeeToDto())
                 .ToListAsync();
+        }
+
+        public void UpdateEmployee(CreateEmployeeDto employee)
+        {
+            Update(employee.CreateEmployeeDtoToModel());
+            SaveChanges();
         }
     }
 }

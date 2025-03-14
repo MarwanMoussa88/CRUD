@@ -6,5 +6,6 @@ using System.Threading.Tasks;
 
 namespace Entities.DTOs
 {
-    public record EmployeeDto(Guid Id, string Name, int Age, EmployeeCompanyDto Company);
+    public record CreateEmployeeDto(Guid Id, string Name, int Age, Guid CompanyId);
+
 }

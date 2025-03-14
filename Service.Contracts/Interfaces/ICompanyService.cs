@@ -11,6 +11,5 @@ namespace Service.Contracts.Interfaces
     public interface ICompanyService
     {
         Task<IEnumerable<CompanyDto>> GetCompanies();
-
     }
 }

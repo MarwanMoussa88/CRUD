@@ -21,6 +21,35 @@ namespace Presentation.Controllers
             return Ok(await _employeeService.GetEmployees());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployeeById(Guid id)
+        {
+            EmployeeDto employee = await _employeeService.GetEmployee(id);
+            return employee == null ? NotFound(employee) : Ok(employee);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateEmployee(CreateEmployeeDto employee)
+        {
+            _employeeService.UpdateEmployee(employee);
+            return NoContent();
+
+        }
+
+        [HttpPost]
+        public IActionResult CreateEmployee(CreateEmployeeDto employee)
+        {
+            _employeeService.AddEmployee(employee);
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteEmployee(EmployeeDto employee)
+        {
+            _employeeService.DeleteEmployee(employee);
+            return NoContent();
+        }
+
 
     }
 }
