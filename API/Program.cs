@@ -1,3 +1,4 @@
+using API.Extensions;
 using API.ServiceExtensions;
 using Microsoft.AspNetCore.HttpOverrides;
 
@@ -12,13 +13,15 @@ builder.Services.ConfigureRepositories();
 builder.Services.ConfigureServices();
 builder.Services.ConfigureHumanCapitalContext(builder.Configuration);
 
+
 var app = builder.Build();
+
+app.ConfigureExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseDeveloperExceptionPage();
 }
 else
     //to use Https 
