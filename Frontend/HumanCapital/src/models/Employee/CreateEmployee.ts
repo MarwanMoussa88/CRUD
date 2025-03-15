@@ -1,9 +1,9 @@
 import { Company } from "../Company"
 
 export class CreateEmployee {
-    id: string = ""
+    id: string | null = null
     name: string = ""
-    age: string = ""
+    age: number = 0
     company: Company = new Company()
     companyId: string = ""
 }

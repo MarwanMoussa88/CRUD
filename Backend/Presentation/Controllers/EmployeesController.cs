@@ -29,7 +29,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateEmployee(CreateEmployeeDto employee)
+        public IActionResult UpdateEmployee([FromBody] CreateEmployeeDto employee)
         {
             _employeeService.UpdateEmployee(employee);
             return NoContent();
@@ -37,7 +37,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateEmployee(CreateEmployeeDto employee)
+        public IActionResult CreateEmployee([FromBody] CreateEmployeeDto employee)
         {
             _employeeService.AddEmployee(employee);
             return NoContent();

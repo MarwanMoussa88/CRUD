@@ -30,7 +30,7 @@ namespace Entities.Conversions
         {
             return new Employee
             {
-                Id = employeeDto.Id,
+                Id = employeeDto.Id ?? new Guid(),
                 Name = employeeDto.Name,
                 Age = employeeDto.Age,
                 CompanyId = employeeDto.CompanyId
