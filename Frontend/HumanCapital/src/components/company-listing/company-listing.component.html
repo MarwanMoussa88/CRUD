@@ -1,3 +1,7 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Company Listing</h2>
+</div>
+
 <table class="table table-hover table-bordered">
   <thead class="table-dark">
     <tr>
@@ -6,17 +10,15 @@
       <th scope="col">Address</th>
     </tr>
   </thead>
-  <tbody>
-    <tr class="table-primary">
-      <td>1</td>
-      <td>John Doe</td>
-      <td>123 Main St.</td>
+  <tbody *ngIf="companies$ | async as companies; else loading">
+    <tr *ngFor="let company of companies; let i = index" [ngClass]="i % 2 === 0 ? 'table-primary' : 'table-secondary'">
+      <td>{{company.id}}</td>
+      <td>{{company.name}}</td>
+      <td>{{company.address}}</td>
     </tr>
-    <tr class="table-secondary">
-      <td>2</td>
-      <td>Jane Smith</td>
-      <td>456 Oak Ave.</td>
-    </tr>
-    <!-- More rows as needed -->
   </tbody>
 </table>
+
+<ng-template #loading>
+  <p>Loading employees...</p>
+</ng-template>

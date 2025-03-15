@@ -10,7 +10,7 @@ namespace Contracts.Interfaces
     public interface IBaseRepository<T>
     {
         IQueryable<T> FindAll();
-        Task<T> FindById(Guid id);
+        T FindById(Guid id);
         IQueryable<T> FindAllByCondition(Expression<Func<T, bool>> condition, bool tracking);
         void Create(T entity);
         void Update(T entity);

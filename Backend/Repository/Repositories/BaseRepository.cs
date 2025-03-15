@@ -51,9 +51,9 @@ namespace Repository.Repositories
             _HumanCapitalContext.SaveChanges();
         }
 
-        public async Task<T> FindById(Guid id)
+        public T FindById(Guid id)
         {
-            return await _HumanCapitalContext.FindAsync<T>(id);
+            return _HumanCapitalContext.Find<T>(id);
         }
     }
 }

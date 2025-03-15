@@ -26,9 +26,9 @@ namespace Repository.Repositories
             SaveChanges();
         }
 
-        public async Task DeleteEmployee(Guid id)
+        public void DeleteEmployee(Guid id)
         {
-            Employee employee = await FindById(id);
+            Employee employee = FindById(id);
             if (employee == null) return;
             Delete(employee);
             SaveChanges();
