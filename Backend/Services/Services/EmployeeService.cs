@@ -18,9 +18,9 @@ namespace Service.Services
             _employeeRepository.AddEmployee(employee);
         }
 
-        public void DeleteEmployee(EmployeeDto employee)
+        public void DeleteEmployee(Guid id)
         {
-            _employeeRepository.DeleteEmployee(employee);
+            _employeeRepository.DeleteEmployee(id);
         }
 
         public async Task<EmployeeDto> GetEmployee(Guid id)

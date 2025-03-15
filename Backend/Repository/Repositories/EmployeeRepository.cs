@@ -26,9 +26,11 @@ namespace Repository.Repositories
             SaveChanges();
         }
 
-        public void DeleteEmployee(EmployeeDto employee)
+        public async Task DeleteEmployee(Guid id)
         {
-            Delete(employee.EmployeeDtoToModel());
+            Employee employee = await FindById(id);
+            if (employee == null) return;
+            Delete(employee);
             SaveChanges();
         }
 

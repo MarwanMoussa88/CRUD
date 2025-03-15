@@ -13,7 +13,7 @@ namespace Service.Contracts
         Task<IEnumerable<EmployeeDto>> GetEmployees();
         Task<EmployeeDto> GetEmployee(Guid id);
         void AddEmployee(CreateEmployeeDto employee);
-        void DeleteEmployee(EmployeeDto employee);
+        void DeleteEmployee(Guid id);
         void UpdateEmployee(CreateEmployeeDto employee);
     }
 }

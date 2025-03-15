@@ -43,10 +43,10 @@ namespace Presentation.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
-        public IActionResult DeleteEmployee(EmployeeDto employee)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteEmployee(Guid id)
         {
-            _employeeService.DeleteEmployee(employee);
+            _employeeService.DeleteEmployee(id);
             return NoContent();
         }
 
